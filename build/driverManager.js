@@ -20,6 +20,7 @@ var DriverManager = /** @class */ (function () {
      * @param force
      */
     DriverManager.prototype.registerDriver = function (name, driver, force) {
+        if (force === void 0) { force = false; }
         if (force || !this.drivers[name]) {
             this.drivers[name] = driver;
         }

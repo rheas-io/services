@@ -19,7 +19,7 @@ export class DriverManager<T> implements IDriverManager<T>{
      * @param driver 
      * @param force 
      */
-    public registerDriver(name: string, driver: T, force: boolean): void {
+    public registerDriver(name: string, driver: T, force: boolean = false): void {
         if (force || !this.drivers[name]) {
             this.drivers[name] = driver;
         }

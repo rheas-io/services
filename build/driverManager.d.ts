@@ -15,7 +15,7 @@ export declare class DriverManager<T> implements IDriverManager<T> {
      * @param driver
      * @param force
      */
-    registerDriver(name: string, driver: T, force: boolean): void;
+    registerDriver(name: string, driver: T, force?: boolean): void;
     /**
      * Returns the driver instance for the name.
      *
