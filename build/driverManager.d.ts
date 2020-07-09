@@ -6,7 +6,7 @@ export declare class DriverManager<T> implements IDriverManager<T> {
      *
      * @var object
      */
-    protected drivers: KeyValue<T>;
+    protected _drivers: KeyValue<T>;
     /**
      * Registers a driver instance to the given name. If force is false
      * and an instance already exists for the key, then it won't be replaced.

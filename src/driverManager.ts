@@ -9,7 +9,7 @@ export class DriverManager<T> implements IDriverManager<T>{
      * 
      * @var object
      */
-    protected drivers: KeyValue<T> = {};
+    protected _drivers: KeyValue<T> = {};
 
     /**
      * Registers a driver instance to the given name. If force is false
@@ -20,8 +20,8 @@ export class DriverManager<T> implements IDriverManager<T>{
      * @param force 
      */
     public registerDriver(name: string, driver: T, force: boolean = false): void {
-        if (force || !this.drivers[name]) {
-            this.drivers[name] = driver;
+        if (force || !this._drivers[name]) {
+            this._drivers[name] = driver;
         }
     }
 
@@ -31,7 +31,7 @@ export class DriverManager<T> implements IDriverManager<T>{
      * @param name 
      */
     public getDriver(name: string): T {
-        const driverInstance = this.drivers[name];
+        const driverInstance = this._drivers[name];
 
         if (!driverInstance) {
             throw new InvalidArgumentException(`Driver ${name} is not registered.`);

@@ -9,7 +9,7 @@ var DriverManager = /** @class */ (function () {
          *
          * @var object
          */
-        this.drivers = {};
+        this._drivers = {};
     }
     /**
      * Registers a driver instance to the given name. If force is false
@@ -21,8 +21,8 @@ var DriverManager = /** @class */ (function () {
      */
     DriverManager.prototype.registerDriver = function (name, driver, force) {
         if (force === void 0) { force = false; }
-        if (force || !this.drivers[name]) {
-            this.drivers[name] = driver;
+        if (force || !this._drivers[name]) {
+            this._drivers[name] = driver;
         }
     };
     /**
@@ -31,7 +31,7 @@ var DriverManager = /** @class */ (function () {
      * @param name
      */
     DriverManager.prototype.getDriver = function (name) {
-        var driverInstance = this.drivers[name];
+        var driverInstance = this._drivers[name];
         if (!driverInstance) {
             throw new invalidArgument_1.InvalidArgumentException("Driver " + name + " is not registered.");
         }
