@@ -1,5 +1,5 @@
 import { KeyValue } from "@rheas/contracts";
-import { IDriverManager } from "@rheas/contracts/core";
+import { IDriverManager } from "@rheas/contracts/services";
 export declare class DriverManager<T> implements IDriverManager<T> {
     /**
      * Stores the manager driver instances.

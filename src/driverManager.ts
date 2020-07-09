@@ -1,5 +1,5 @@
 import { KeyValue } from "@rheas/contracts";
-import { IDriverManager } from "@rheas/contracts/core";
+import { IDriverManager } from "@rheas/contracts/services";
 import { InvalidArgumentException } from "@rheas/errors/invalidArgument";
 
 export class DriverManager<T> implements IDriverManager<T>{
