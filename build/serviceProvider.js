@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServiceProvider = void 0;
-var ServiceProvider = /** @class */ (function () {
+class ServiceProvider {
     /**
      * Creates a new service provider
      *
      * @param name
      * @param container
      */
-    function ServiceProvider(name, container) {
+    constructor(name, container) {
         /**
          * Registered status of the provider.
          *
@@ -33,54 +33,53 @@ var ServiceProvider = /** @class */ (function () {
      * And, referencing other service which inturn reference this service could produce
      * an infinite loop.
      */
-    ServiceProvider.prototype.register = function () {
-    };
+    register() {
+    }
     /**
      * Boots the service provider. All the other registered services will be available
      * inside this function.
      */
-    ServiceProvider.prototype.boot = function () {
-    };
+    boot() {
+    }
     /**
      * Sets the registration status of this service provider.
      *
      * @param status
      */
-    ServiceProvider.prototype.setRegistered = function (status) {
+    setRegistered(status) {
         this._registered = status;
-    };
+    }
     /**
      * Sets the boot status of this service provider
      *
      * @param status
      */
-    ServiceProvider.prototype.setBooted = function (status) {
+    setBooted(status) {
         this._booted = status;
-    };
+    }
     /**
      * Returns the registration status of this service provider.
      *
      * @return boolean
      */
-    ServiceProvider.prototype.isRegistered = function () {
+    isRegistered() {
         return this._registered;
-    };
+    }
     /**
      * Returns the boot status of this service provider.
      *
      * @return boolean
      */
-    ServiceProvider.prototype.isBooted = function () {
+    isBooted() {
         return this._booted;
-    };
+    }
     /**
      * Returns the name of the service.
      *
      * @return string
      */
-    ServiceProvider.prototype.serviceName = function () {
+    serviceName() {
         return this.name;
-    };
-    return ServiceProvider;
-}());
+    }
+}
 exports.ServiceProvider = ServiceProvider;

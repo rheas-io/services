@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DriverManager = void 0;
-var invalidArgument_1 = require("@rheas/errors/invalidArgument");
-var DriverManager = /** @class */ (function () {
-    function DriverManager() {
+const invalidArgument_1 = require("@rheas/errors/invalidArgument");
+class DriverManager {
+    constructor() {
         /**
          * Stores the manager driver instances.
          *
@@ -19,24 +19,22 @@ var DriverManager = /** @class */ (function () {
      * @param driver
      * @param force
      */
-    DriverManager.prototype.registerDriver = function (name, driver, force) {
-        if (force === void 0) { force = false; }
+    registerDriver(name, driver, force = false) {
         if (force || !this._drivers[name]) {
             this._drivers[name] = driver;
         }
-    };
+    }
     /**
      * Returns the driver instance for the name.
      *
      * @param name
      */
-    DriverManager.prototype.getDriver = function (name) {
-        var driverInstance = this._drivers[name];
+    getDriver(name) {
+        const driverInstance = this._drivers[name];
         if (!driverInstance) {
-            throw new invalidArgument_1.InvalidArgumentException("Driver " + name + " is not registered.");
+            throw new invalidArgument_1.InvalidArgumentException(`Driver ${name} is not registered.`);
         }
         return driverInstance;
-    };
-    return DriverManager;
-}());
+    }
+}
 exports.DriverManager = DriverManager;
