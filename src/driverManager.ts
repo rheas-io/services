@@ -1,12 +1,11 @@
-import { KeyValue } from "@rheas/contracts";
-import { IDriverManager } from "@rheas/contracts/services";
-import { InvalidArgumentException } from "@rheas/errors/invalidArgument";
+import { KeyValue } from '@rheas/contracts';
+import { IDriverManager } from '@rheas/contracts/services';
+import { InvalidArgumentException } from '@rheas/errors/invalidArgument';
 
-export class DriverManager<T> implements IDriverManager<T>{
-
+export class DriverManager<T> implements IDriverManager<T> {
     /**
      * Stores the manager driver instances.
-     * 
+     *
      * @var object
      */
     protected _drivers: KeyValue<T> = {};
@@ -14,10 +13,10 @@ export class DriverManager<T> implements IDriverManager<T>{
     /**
      * Registers a driver instance to the given name. If force is false
      * and an instance already exists for the key, then it won't be replaced.
-     * 
-     * @param name 
-     * @param driver 
-     * @param force 
+     *
+     * @param name
+     * @param driver
+     * @param force
      */
     public registerDriver(name: string, driver: T, force: boolean = false): void {
         if (force || !this._drivers[name]) {
@@ -27,8 +26,8 @@ export class DriverManager<T> implements IDriverManager<T>{
 
     /**
      * Returns the driver instance for the name.
-     * 
-     * @param name 
+     *
+     * @param name
      */
     public getDriver(name: string): T {
         const driverInstance = this._drivers[name];
