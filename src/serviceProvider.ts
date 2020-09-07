@@ -1,7 +1,7 @@
 import { IServiceProvider } from '@rheas/contracts/services';
 import { IContainer, InstanceHandler } from '@rheas/contracts/container';
 
-export abstract class ServiceProvider implements IServiceProvider {
+export class ServiceProvider implements IServiceProvider {
     /**
      * Stores the container instance
      *
@@ -50,7 +50,7 @@ export abstract class ServiceProvider implements IServiceProvider {
      *
      * And, referencing other service which inturn reference this service could produce
      * an infinite loop.
-     * 
+     *
      * Singleton services are registered using the service resolver. If additional
      * services has to be registered, or service is not singleton, override this method.
      */
@@ -60,10 +60,12 @@ export abstract class ServiceProvider implements IServiceProvider {
 
     /**
      * Returns the service resolver for singleton services.
-     * 
+     *
      * @returns
      */
-    public abstract serviceResolver(): InstanceHandler;
+    public serviceResolver(): InstanceHandler {
+        return (container) => {};
+    }
 
     /**
      * Boots the service provider. All the other registered services will be available
