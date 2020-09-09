@@ -51,6 +51,20 @@ export class DriverManager<T> implements IDriverManager<T> {
     }
 
     /**
+     * Returns the active driver if one is set or returns false.
+     * Comes handy to check the presence of an active driver.
+     *
+     * @returns
+     */
+    public hasActiveDriver(): false | T {
+        try {
+            return this.getDriver();
+        } catch (err) {}
+
+        return false;
+    }
+
+    /**
      * Returns the driver instance for the name or returns the active driver,
      * if no name is specified.
      *
