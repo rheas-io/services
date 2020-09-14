@@ -21,11 +21,18 @@ export class DriverManager<T> implements IDriverManager<T> {
      * Registers a driver instance to the given name. If force is false
      * and an instance already exists for the key, then it won't be replaced.
      *
+     * Throws an exception if empty name is used.
+     *
      * @param name
      * @param driver
      * @param force
+     * @throws InvalidArgumentException
      */
     public registerDriver(name: string, driver: T, force: boolean = false): void {
+        if (!name) {
+            throw new InvalidArgumentException('Invalid driver name given');
+        }
+
         if (force || !this._drivers[name]) {
             this._drivers[name] = driver;
         }
@@ -65,8 +72,8 @@ export class DriverManager<T> implements IDriverManager<T> {
     }
 
     /**
-     * Returns the driver instance for the name or returns the default driver,
-     * if no name is specified.
+     * Returns the driver registered for the name if a name is given, or returns
+     * the default driver.
      *
      * Throws an exception if a driver with the given name is not registered.
      *
@@ -74,8 +81,7 @@ export class DriverManager<T> implements IDriverManager<T> {
      * @throws InvalidArgumentException
      */
     public getDriver(name?: string): T {
-        const driverInstance =
-            name != null ? this._drivers[name] : this._drivers[this._defaultDriver];
+        const driverInstance = name ? this._drivers[name] : this._drivers[this._defaultDriver];
 
         if (!driverInstance) {
             throw new InvalidArgumentException(`Driver ${name} is not registered.`);
