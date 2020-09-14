@@ -11,11 +11,11 @@ export class DriverManager<T> implements IDriverManager<T> {
     protected _drivers: KeyValue<T> = {};
 
     /**
-     * Sets the active driver key/name.
+     * Sets the default driver key/name.
      *
      * @var string
      */
-    protected _activeDriver: string = '';
+    protected _defaultDriver: string = '';
 
     /**
      * Registers a driver instance to the given name. If force is false
@@ -32,31 +32,30 @@ export class DriverManager<T> implements IDriverManager<T> {
     }
 
     /**
-     * Sets the active driver name, if a driver of that name is registered.
+     * Sets the default driver name, if a driver of that name is registered.
      * Otherwise an exception is thrown.
      *
      * Provide a second argument to forcefully register a driver on the given
-     * name and set it as active driver.
+     * name and set it as default driver.
      *
      * @param name
      * @param driver
      */
-    public setActiveDriver(name: string, driver?: T): void {
+    public setDefaultDriver(name: string, driver?: T): void {
         if (driver) {
             this.registerDriver(name, driver, true);
         }
         this.getDriver(name);
 
-        this._activeDriver = name;
+        this._defaultDriver = name;
     }
 
     /**
-     * Returns the active driver if one is set or returns false.
-     * Comes handy to check the presence of an active driver.
+     * Returns the default driver if one is set or returns false.
      *
      * @returns
      */
-    public hasActiveDriver(): false | T {
+    public defaultDriver(): false | T {
         try {
             return this.getDriver();
         } catch (err) {}
@@ -65,14 +64,14 @@ export class DriverManager<T> implements IDriverManager<T> {
     }
 
     /**
-     * Returns the driver instance for the name or returns the active driver,
+     * Returns the driver instance for the name or returns the default driver,
      * if no name is specified.
      *
      * @param name
      */
     public getDriver(name?: string): T {
         const driverInstance =
-            name != null ? this._drivers[name] : this._drivers[this._activeDriver];
+            name != null ? this._drivers[name] : this._drivers[this._defaultDriver];
 
         if (!driverInstance) {
             throw new InvalidArgumentException(`Driver ${name} is not registered.`);
