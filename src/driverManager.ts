@@ -40,6 +40,7 @@ export class DriverManager<T> implements IDriverManager<T> {
      *
      * @param name
      * @param driver
+     * @throws InvalidArgumentException
      */
     public setDefaultDriver(name: string, driver?: T): void {
         if (driver) {
@@ -67,7 +68,10 @@ export class DriverManager<T> implements IDriverManager<T> {
      * Returns the driver instance for the name or returns the default driver,
      * if no name is specified.
      *
+     * Throws an exception if a driver with the given name is not registered.
+     *
      * @param name
+     * @throws InvalidArgumentException
      */
     public getDriver(name?: string): T {
         const driverInstance =
