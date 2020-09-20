@@ -6,6 +6,9 @@
   "directories": {
     "test": "tests"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rheas-io/services.git"
