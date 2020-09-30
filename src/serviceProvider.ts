@@ -1,3 +1,4 @@
+import { EventEmitter } from 'events';
 import { IServiceProvider } from '@rheas/contracts/services';
 import { IContainer, InstanceHandler } from '@rheas/contracts/container';
 
@@ -32,6 +33,13 @@ export class ServiceProvider implements IServiceProvider {
     protected _booted: boolean = false;
 
     /**
+     * Service events emitter.
+     *
+     * @var EventEmitter
+     */
+    protected _event: EventEmitter;
+
+    /**
      * Creates a new service provider
      *
      * @param name
@@ -40,6 +48,8 @@ export class ServiceProvider implements IServiceProvider {
     constructor(name: string, container: IContainer) {
         this.name = name;
         this.container = container;
+
+        this._event = new EventEmitter();
     }
 
     /**
@@ -74,21 +84,27 @@ export class ServiceProvider implements IServiceProvider {
     public boot(): void {}
 
     /**
-     * Sets the registration status of this service provider.
-     *
-     * @param status
+     * Sets the registration status of this service provider to true.
      */
-    public setRegistered(status: boolean): void {
-        this._registered = status;
+    public setRegistered(): void {
+        if (this.isRegistered()) {
+            return;
+        }
+        this._registered = true;
+
+        this._event.emit('registered');
     }
 
     /**
-     * Sets the boot status of this service provider
-     *
-     * @param status
+     * Sets the boot status of this service provider to true.
      */
-    public setBooted(status: boolean): void {
-        this._booted = status;
+    public setBooted(): void {
+        if (this.isBooted()) {
+            return;
+        }
+        this._booted = true;
+
+        this._event.emit('booted');
     }
 
     /**
