@@ -54,6 +54,15 @@ export abstract class BaseServiceProvider implements IServiceProvider {
     }
 
     /**
+     * Registers a callback that has to be executed after registering.
+     *
+     * @param callback
+     */
+    public registered(callback: () => any): void {
+        this._event.on('registered', callback);
+    }
+
+    /**
      * Sets the boot status of this service provider to true.
      */
     public setBooted(): void {
@@ -63,6 +72,15 @@ export abstract class BaseServiceProvider implements IServiceProvider {
         this._booted = true;
 
         this._event.emit('booted');
+    }
+
+    /**
+     * Registers a callback that has to be executed after boot.
+     *
+     * @param callback
+     */
+    public booted(callback: () => any): void {
+        this._event.on('booted', callback);
     }
 
     /**
