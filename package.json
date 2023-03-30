@@ -32,9 +32,11 @@
     "copypackage_dev": "cp -rf package.json build_dev",
     "build-dev": "tsc --outDir ./build_dev && npm run copypackage_dev"
   },
-  "devDependencies": {
+  "dependencies": {
     "@rheas/contracts": "^0.0.1",
-    "@rheas/errors": "^0.0.1",
+    "@rheas/errors": "^0.0.1"
+  },
+  "devDependencies": {
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.2",
     "jest": "^26.5.2",
