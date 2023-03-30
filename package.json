@@ -33,8 +33,8 @@
     "build-dev": "tsc --outDir ./build_dev && npm run copypackage_dev"
   },
   "dependencies": {
-    "@rheas/contracts": "^0.0.1",
-    "@rheas/errors": "^0.0.1"
+    "@rheas/contracts": "^0.0.11",
+    "@rheas/errors": "^0.0.5"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
