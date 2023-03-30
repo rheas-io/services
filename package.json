@@ -1,6 +1,6 @@
 {
   "name": "@rheas/services",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Service provider core functionality module",
   "main": "index.js",
   "directories": {
